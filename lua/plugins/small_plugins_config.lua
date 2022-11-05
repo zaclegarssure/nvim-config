@@ -3,16 +3,13 @@
 -- unique file per plugin.
 --------------------------------------------------------
 
--- Plugins: pears, gitsigns, vim-floaterm, bufferline, neoscroll, nvim-colorizer
--- https://github.com/steelsojka/pears.nvim
+-- Plugins: autopairs, gitsigns, vim-floaterm, bufferline, neoscroll, nvim-colorizer
+-- https://github.com/windwp/nvim-autopairs
 -- https://github.com/lewis6991/gitsigns.nvim
 -- https://github.com/voldikss/vim-floaterm
 -- https://github.com/akinsho/bufferline.nvim
 -- https://github.com/karb94/neoscroll.nvim
 -- https://github.com/norcalli/nvim-colorizer.lua
-
--- Pears
-require("pears").setup()
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -48,3 +45,6 @@ require('colorizer').setup()
 require('zen-mode').setup {
     backdrop = 1
 }
+
+-- autopairs
+require('nvim-autopairs').setup()

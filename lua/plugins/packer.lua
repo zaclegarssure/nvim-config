@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
     -- Better Rust LSP
     use 'simrat39/rust-tools.nvim'
     -- Autopairs
-    use "steelsojka/pears.nvim"
+    use 'windwp/nvim-autopairs'
     -- Surround things easily
     use "tpope/vim-surround"
     -- Floating terminal
@@ -72,7 +72,7 @@ return require('packer').startup(function(use)
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use { 'theHamsta/nvim-dap-virtual-text', requires = { "mfussenegger/nvim-dap" } }
     -- OwO tabline
-    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+    use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons' }
     -- LSP progress on status line
     use 'arkav/lualine-lsp-progress'
     -- Scala LSP
@@ -85,4 +85,32 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-jdtls'
     -- Distraction free
     use 'folke/zen-mode.nvim'
+    -- Tabout
+use {
+  'abecodes/tabout.nvim',
+  config = function()
+    require('tabout').setup {
+    tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+    backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+    act_as_tab = true, -- shift content if tab out is not possible
+    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+    default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+    default_shift_tab = '<C-d>', -- reverse shift default action,
+    enable_backwards = true, -- well ...
+    completion = true, -- if the tabkey is used in a completion pum
+    tabouts = {
+      {open = "'", close = "'"},
+      {open = '"', close = '"'},
+      {open = '`', close = '`'},
+      {open = '(', close = ')'},
+      {open = '[', close = ']'},
+      {open = '{', close = '}'}
+    },
+    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+    exclude = {} -- tabout will ignore these filetypes
+}
+  end,
+	wants = {'nvim-treesitter'}, -- or require if not used so far
+	after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
+}
 end)
