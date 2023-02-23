@@ -73,17 +73,12 @@ nvim_lsp.kotlin_language_server.setup {
     capabilities = capabilities,
 }
 
--- Lua server
-local sumneko_root_path = '/usr/lib/lua-language-server'
-local sumneko_binary = '/usr/bin/lua-language-server'
-
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-nvim_lsp.sumneko_lua.setup {
-    cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+nvim_lsp.lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
