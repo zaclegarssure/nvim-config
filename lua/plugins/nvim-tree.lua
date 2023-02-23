@@ -8,8 +8,6 @@
 
 require('nvim-tree').setup {
 
-    -- open the tree when running this setup function
-    open_on_setup = true,
     view = { adaptive_size = true },
     diagnostics = {
         enable = false,
