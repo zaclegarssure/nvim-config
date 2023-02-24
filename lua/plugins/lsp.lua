@@ -42,6 +42,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>fr', function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, bufopts)
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -110,7 +111,10 @@ vim.opt_global.shortmess:remove("F")
 local metals_config = require("metals").bare_config()
 
 metals_config.capabilities = capabilities
-metals_config.on_attach = on_attach
+metals_config.on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    require("metals").setup_dap()
+end
 metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {
     showImplicitArguments = true,
