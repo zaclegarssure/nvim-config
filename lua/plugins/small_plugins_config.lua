@@ -33,18 +33,10 @@ g.floaterm_width = 0.9
 g.floaterm_height = 0.9
 
 -- tabline
-require("bufferline").setup {}
-
--- natural scrolling
-require('neoscroll').setup()
+require("bufferline").setup()
 
 -- colorizer
 require('colorizer').setup()
-
--- Zen mode
-require('zen-mode').setup {
-    backdrop = 1
-}
 
 -- autopairs
 require('nvim-autopairs').setup()
